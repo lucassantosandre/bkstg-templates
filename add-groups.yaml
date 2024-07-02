@@ -1,0 +1,47 @@
+apiVersion: backstage.io/v1beta1
+kind: Template
+metadata:
+  name: add-team-to-repo
+  title: Add Team to GitHub Repository
+  description: Template to add a GitHub team to a repository
+  tags:
+    - github
+    - team
+spec:
+  owner: my-team
+  parameters:
+    - title: Repository URL
+      type: string
+      name: repoUrl
+      description: The URL of the GitHub repository
+    - title: Team Slug
+      type: string
+      name: teamSlug
+      description: The slug of the GitHub team
+    - title: Organization
+      type: string
+      name: org
+      description: The GitHub organization
+    - title: Permission
+      type: string
+      enum:
+        - pull
+        - push
+        - admin
+        - maintain
+        - triage
+      name: permission
+      default: maintain
+      description: The permission level for the team
+  steps:
+    - id: add-team
+      name: Add Team to Repository
+      action: b3:github:addTeamToRepo
+      input:
+        repoUrl: '${{ parameters.repoUrl }}'
+        teamSlug: '${{ parameters.teamSlug }}'
+        org: '${{ parameters.org }}'
+        permission: '${{ parameters.permission }}'
+  output:
+    - title: Repository URL
+      url: '${{ parameters.repoUrl }}'
