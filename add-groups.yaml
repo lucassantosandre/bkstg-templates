@@ -11,7 +11,7 @@ spec:
   type: service
   owner: my-team
   parameters:
-    - title: Repository URL
+    - title: Repo URL
       type: string
       description: The URL of the GitHub repository
     - title: Team Slug
