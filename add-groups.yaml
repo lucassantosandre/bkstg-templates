@@ -8,6 +8,7 @@ metadata:
     - github
     - team
 spec:
+  type: service # Adicionando o campo type aqui
   owner: my-team
   parameters:
     - title: Repository URL
