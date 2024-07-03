@@ -8,36 +8,49 @@ metadata:
     - github
     - team
 spec:
-  type: service
   owner: my-team
+  type: service
   parameters:
-    - title: Repo URL
-      type: string
-      description: The URL of the GitHub repository
-    - title: Team Slug
-      type: string
-      name: teamSlug
-      description: The slug of the GitHub team
-    - title: Organization
-      type: string
-      description: The GitHub organization
-    - title: Permission
-      type: string
-      enum:
-        - pull
-        - push
-        - admin
-        - maintain
-        - triage
-      name: permission
-      default: maintain
-      description: The permission level for the team
+    - title: Repository and Team Details
+      required:
+        - repoUrl
+        - teamSlug
+        - org
+        - permission
+      properties:
+        repoUrl:
+          title: Repository URL
+          type: string
+          description: The URL of the GitHub repository
+        teamSlug:
+          title: Team Slug
+          type: string
+          description: The slug of the GitHub team
+        org:
+          title: Organization
+          type: string
+          description: The GitHub organization
+        permission:
+          title: Permission
+          type: string
+          enum:
+            - pull
+            - push
+            - admin
+            - maintain
+            - triage
+          description: The permission level for the team
+          default: maintain
   steps:
     - id: add-team
       name: Add Team to Repository
       action: b3:github:addTeamToRepo
       input:
-        repoUrl: '${{ parameters.repoUrl }}'
-        teamSlug: '${{ parameters.teamSlug }}'
-        org: '${{ parameters.org }}'
-        permission: '${{ parameters.permission }}'
+        repoUrl: ${{ parameters.repoUrl }}
+        teamSlug: ${{ parameters.teamSlug }}
+        org: ${{ parameters.org }}
+        permission: ${{ parameters.permission }}
+  output:
+    links:
+      - title: Repository
+        url: ${{ parameters.repoUrl }}
