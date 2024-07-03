@@ -13,7 +13,6 @@ spec:
   parameters:
     - title: Repository URL
       type: string
-      name: repoUrl
       description: The URL of the GitHub repository
     - title: Team Slug
       type: string
@@ -21,7 +20,6 @@ spec:
       description: The slug of the GitHub team
     - title: Organization
       type: string
-      name: org
       description: The GitHub organization
     - title: Permission
       type: string
@@ -43,5 +41,3 @@ spec:
         teamSlug: '${{ parameters.teamSlug }}'
         org: '${{ parameters.org }}'
         permission: '${{ parameters.permission }}'
-  output:
-    repoUrl: '${{ parameters.repoUrl }}'
