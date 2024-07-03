@@ -44,4 +44,6 @@ spec:
         org: '${{ parameters.org }}'
         permission: '${{ parameters.permission }}'
   output:
-    repoUrl: '${{ parameters.repoUrl }}'
+    repoUrl:
+      title: Repository URL
+      value: '${{ parameters.repoUrl }}'
