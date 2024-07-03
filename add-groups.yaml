@@ -8,7 +8,7 @@ metadata:
     - github
     - team
 spec:
-  type: service # Adicionando o campo type aqui
+  type: service
   owner: my-team
   parameters:
     - title: Repository URL
@@ -44,5 +44,4 @@ spec:
         org: '${{ parameters.org }}'
         permission: '${{ parameters.permission }}'
   output:
-    - title: Repository URL
-      url: '${{ parameters.repoUrl }}'
+    repoUrl: '${{ parameters.repoUrl }}'
